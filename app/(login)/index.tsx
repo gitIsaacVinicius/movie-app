@@ -19,7 +19,10 @@ const LoginScreen = () => {
                 <AppTextInput placeholder="Senha" placeholderTextColor="#FFFFFF" secureTextEntry/>
             </View>
 
-            <AppButton style={{backgroundColor: Colors.primary, width: "70%", height: 50, marginRight: 0}} title="Entrar" />
+            <AppButton style={{backgroundColor: Colors.primary, width: "70%", height: 50, marginRight: 0}} 
+            title="Entrar" 
+            onPress={()=>router.push("../(tabs)/(home)")}
+            />
 
             <Text style={styles.createaccount}>Novo por aqui?{" "} 
                 <Text onPress={()=>router.push("./sign-up")} style={{color: Colors.primary}}>Cadastre-se agora</Text>
