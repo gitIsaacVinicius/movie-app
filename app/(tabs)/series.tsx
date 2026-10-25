@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-export default function SeriesScreen() {
+const SeriesScreen = () => {
     return (
         <View>
             <Text>SeriesScreen</Text>

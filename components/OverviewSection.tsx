@@ -8,7 +8,7 @@ import { Feather, FontAwesome5 } from "@expo/vector-icons";
 const OverviewSection = () => {
     return (
         <View style={styles.overview}>
-            <Image style={styles.overviewImage} source={require("@/assets/images/overview.png")} />
+            <Image style={styles.overviewImage} source={require("../assets/images/overview.png")} />
         
         {/* Overview Cover */}
             <View style={styles.cover}>
@@ -16,7 +16,7 @@ const OverviewSection = () => {
                     <View style={styles.header}>
                         <View style={{flexDirection: "row", alignItems: "center"}}>
                             <Image style={styles.profile} 
-                            source={require("@assets/images/profile.jpg")} />
+                            source={require("../assets/images/profile.jpg")} />
 
                            <View style={{marginLeft: 8}}>
                             <Text style={styles.greeting}>Hi, Kelvin</Text>

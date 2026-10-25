@@ -23,7 +23,7 @@ const TabLayout = () => {
             headerShown: false,
           }}/> 
           
-          <Tabs.Screen name='(home)/movies' options={{
+          <Tabs.Screen name='movies' options={{
             tabBarIcon: ({color}) => (
                 <Feather name="play-circle" size={20} color={color}/>
             ),
@@ -31,7 +31,7 @@ const TabLayout = () => {
             headerShown: false,
           }}/> 
           
-          <Tabs.Screen name='(home)/series' options={{
+          <Tabs.Screen name='series' options={{
             tabBarIcon: ({color}) => (
                 <Feather name="folder" size={20} color={color}/>
             ),
@@ -39,7 +39,7 @@ const TabLayout = () => {
             headerShown: false,
           }}/> 
           
-          <Tabs.Screen name='(home)/profile' options={{
+          <Tabs.Screen name='profile' options={{
             tabBarIcon: ({color}) => (
                 <Octicons name="person" size={20} color={color}/>
             ),

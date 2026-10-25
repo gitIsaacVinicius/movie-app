@@ -1,7 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import Colors from "../../../constants/colors";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
 import OverviewSection from "../../../components/OverviewSection";
 import MovieCard from "../../../components/MovieCard";
 import { movies } from "../../../mock-data";
