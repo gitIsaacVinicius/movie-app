@@ -5,18 +5,8 @@ import OverviewSection from "../../../components/OverviewSection";
 import MovieCard from "../../../components/MovieCard";
 import { movies } from "../../../mock-data";
 import ContinueWatchingMovieCard from "../../../components/ContinueWatchingMovieCard";
+import SectionHeader from "../../../components/SectionHeader";
 
-const SectionHeader = ({title}:{title: string}) => {
-    return (
-        <View style={styles.sectionheader}>
-            <Text style={{color: Colors.text, fontWeight: "600", fontSize: 16}}>{title}</Text>
-            
-            <TouchableOpacity activeOpacity={.8} style={{padding: 10}}>
-                <Text style={{ color: Colors.primary}}>Veja mais</Text>
-            </TouchableOpacity>
-        </View>
-    )
-}
 
 const HomeScreen = () => {
     return (
@@ -75,11 +65,4 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.background,
     },
-    sectionheader: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: 14,
-        paddingHorizontal: 14,
-    }
 });
