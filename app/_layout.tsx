@@ -7,10 +7,10 @@ export default function RootLayout() {
             headerShown: false
         }}
         >
-            <Stack.Screen name="details" />
             <Stack.Screen name="(login)/index" />
             <Stack.Screen name="sign-up" />
             <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="details" />
         </Stack>
     )
 }
