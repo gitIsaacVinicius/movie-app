@@ -49,7 +49,12 @@ const TabLayout = () => {
                 <Feather name="folder" size={20} color={color}/>
             ),
             tabBarLabel: "TV/Séries",
-            headerShown: false,
+            headerStyle: {backgroundColor: Colors.background},
+            headerTitle: "",
+            headerRight: () => {
+              return <RightIcon />
+            },
+            headerLeft: () => <Text style={styles.title}>Séries de TV</Text>
           }}/> 
           
           <Tabs.Screen name='profile' options={{
