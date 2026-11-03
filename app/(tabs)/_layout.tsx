@@ -36,7 +36,12 @@ const TabLayout = () => {
                 <Feather name="play-circle" size={20} color={color}/>
             ),
             tabBarLabel: "Filmes",
-            headerShown: false,
+            headerStyle: {backgroundColor: Colors.background},
+            headerTitle: "",
+            headerRight: () => {
+              return <RightIcon />
+            },
+            headerLeft: () => <Text style={styles.title}>Filmes</Text>
           }}/> 
           
           <Tabs.Screen name='series' options={{
