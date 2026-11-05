@@ -4,11 +4,19 @@ import Colors from "../constants/colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
+import { Movie } from "../types";
+import { TMDB_IMAGE_BASE_PATH } from "../hooks/useFetch";
+import { default_image } from "../utils/assets";
+import { getGenreString } from "../utils/genres";
 
-const OverviewSection = () => {
+const OverviewSection = ({movie}:{movie: Movie | null}) => {
+    const backdrop_image = movie?.backdrop_path ? `${TMDB_IMAGE_BASE_PATH}${movie?.backdrop_path}` : null
+
+    const yearRelease = movie?.release_date?.split("-")[0] ?? ""
+
     return (
         <View style={styles.overview}>
-            <Image style={styles.overviewImage} source={require("../assets/images/overview.png")} />
+            <Image style={styles.overviewImage} source={backdrop_image ? { uri: backdrop_image } : default_image} />
         
         {/* Overview Cover */}
             <View style={styles.cover}>
@@ -38,13 +46,15 @@ const OverviewSection = () => {
                     <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                         <Text 
                         numberOfLines={1}
-                        style={{fontSize: 26, fontWeight: "600", color: Colors.text}}>The Sandman</Text>
-                        <TouchableOpacity activeOpacity={.8} style={styles.playbtn}>
-                            <FontAwesome5 name="play" size={24} color={Colors.text} />
-                        </TouchableOpacity>
+                        style={{fontSize: 26, fontWeight: "600", color: Colors.text, flex: 1}}>{movie?.original_title}</Text>
+                        <View style={{width: 75, alignItems: "flex-end"}}>
+                            <TouchableOpacity activeOpacity={.8} style={styles.playbtn}>
+                                <FontAwesome5 name="play" size={24} color={Colors.text} />
+                            </TouchableOpacity>
+                        </View> 
                     </View>
 
-                    <Text style={{color: Colors.gray}}>2025 | Monster Horror | Sci-fi Epic</Text>
+                    <Text style={{color: Colors.gray}}>{`${yearRelease} | ${getGenreString(movie?.genre_ids || [])}`}</Text>
                 </LinearGradient>
             </View>
         </View>

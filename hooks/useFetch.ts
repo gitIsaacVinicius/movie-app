@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import axios from "axios"
 
+export const TMDB_IMAGE_BASE_PATH = "https://image.tmdb.org/t/p/w500"
 const TMDB_BASE_URL = "https://api.themoviedb.org/3"
 const TMDB_ACCESS_TOKEN = process.env.EXPO_PUBLIC_TMDB_ACCESS_TOKEN || ""
 
