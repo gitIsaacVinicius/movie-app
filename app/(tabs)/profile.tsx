@@ -5,8 +5,24 @@ import { ms } from "../../screen-dimensions";
 import SectionHeader from "../../components/SectionHeader";
 import { movies } from "../../mock-data";
 import MovieCard from "../../components/MovieCard";
+import { useFetch } from "../../hooks/useFetch";
+import { Movie } from "../../types";
 
 const ProfileScreen = () => {
+    const params = {
+        include_adult: false,
+        include_video: false,
+        language: "pt-BR",
+        page: 1,
+        sort_by: "popularity.desc",
+    }
+
+    const {data: yesterdayData} = useFetch("/discover/movie", params)
+    const {data: dateData} = useFetch("/discover/movie", {...params, page: 2})
+    
+    const yesterdayMovies: Movie[] = yesterdayData?.results
+    const dateMovies: Movie[] = dateData?.results
+
     return (
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -23,9 +39,8 @@ const ProfileScreen = () => {
 
                 <View style={{marginVertical: 12}}>
                     <SectionHeader title="Ontem" /> 
-                    <FlatList data={movies} renderItem={( {item} ) => (
-                        <MovieCard genre={item.genre} title={item.title} image={item.image} 
-                        />
+                    <FlatList data={yesterdayMovies || []} renderItem={( {item} ) => (
+                        <MovieCard movie={item} />
                     )} 
                     horizontal
                     />
@@ -33,9 +48,8 @@ const ProfileScreen = () => {
                 
                 <View style={{marginBottom: 12}}>
                     <SectionHeader title="20 de Outubro de 2026" /> 
-                    <FlatList data={[...movies].reverse()} renderItem={( {item} ) => (
-                        <MovieCard genre={item.genre} title={item.title} image={item.image} 
-                        />
+                    <FlatList data={dateMovies || []} renderItem={( {item} ) => (
+                        <MovieCard movie={item} />
                     )} 
                     horizontal
                     />
