@@ -18,7 +18,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
         <TouchableOpacity onPress={() => router.push({
             pathname:"/details",
             params: {
-                title: movie?.original_title || movie?.original_name,
+                title: movie?.title || movie?.name,
                 backdrop_path: movie?.backdrop_path,
                 date: movie?.release_date,
                 genere_ids: movie?.genre_ids,
@@ -32,7 +32,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
 
             <View>
                 <Text numberOfLines={1} style={{color: Colors.text, fontWeight: "600", fontSize: ms(14)}}>
-                    {movie?.original_title || movie?.original_name}
+                    {movie?.title || movie?.name}
                 </Text>
                 <Text numberOfLines={1} style={{color: Colors.gray, fontSize: ms(10)}}>
                     {getGenreString(movie?.genre_ids || [])}

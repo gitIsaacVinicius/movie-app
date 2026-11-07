@@ -38,7 +38,7 @@ const ContinueWatchingMovieCard = ({ movie }: { movie: Movie }) => {
 
                 <View style={{marginTop: 8}}>
                     <Text numberOfLines={1} style={{color: Colors.text, fontWeight: "600", fontSize: 16}}>
-                        {movie?.original_title || movie?.original_name}
+                        {movie?.title || movie?.name}
                     </Text>
 
                     <Text numberOfLines={1} style={{color: Colors.gray, fontSize: 12}}>

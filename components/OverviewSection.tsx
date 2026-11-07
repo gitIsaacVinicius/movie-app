@@ -46,7 +46,7 @@ const OverviewSection = ({movie}:{movie: Movie | null}) => {
                     <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                         <Text 
                         numberOfLines={1}
-                        style={{fontSize: 26, fontWeight: "600", color: Colors.text, flex: 1}}>{movie?.original_title}</Text>
+                        style={{fontSize: 26, fontWeight: "600", color: Colors.text, flex: 1}}>{movie?.title || movie?.name}</Text>
                         <View style={{width: 75, alignItems: "flex-end"}}>
                             <TouchableOpacity activeOpacity={.8} style={styles.playbtn}>
                                 <FontAwesome5 name="play" size={24} color={Colors.text} />

@@ -1,87 +1,39 @@
 const genres = [
-    {
-      id: 28,
-      name: "Action"
-    },
-    {
-      id: 12,
-      name: "Adventure"
-    },
-    {
-      id: 16,
-      name: "Animation"
-    },
-    {
-      id: 35,
-      name: "Comedy"
-    },
-    {
-      id: 80,
-      name: "Crime"
-    },
-    {
-      id: 99,
-      name: "Documentary"
-    },
-    {
-      id: 18,
-      name: "Drama"
-    },
-    {
-      id: 10751,
-      name: "Family"
-    },
-    {
-      id: 14,
-      name: "Fantasy"
-    },
-    {
-      id: 36,
-      name: "History"
-    },
-    {
-      id: 27,
-      name: "Horror"
-    },
-    {
-      id: 10402,
-      name: "Music"
-    },
-    {
-      id: 9648,
-      name: "Mystery"
-    },
-    {
-      id: 10749,
-      name: "Romance"
-    },
-    {
-      id: 878,
-      name: "Science Fiction"
-    },
-    {
-      id: 10770,
-      name: "TV Movie"
-    },
-    {
-      id: 53,
-      name: "Thriller"
-    },
-    {
-      id: 10752,
-      name: "War"
-    },
-    {
-      id: 37,
-      name: "Western"
-    }
+    { id: 28, name: "Ação" },
+    { id: 12, name: "Aventura" },
+    { id: 16, name: "Animação" },
+    { id: 35, name: "Comédia" },
+    { id: 80, name: "Crime" },
+    { id: 99, name: "Documentário" },
+    { id: 18, name: "Drama" },
+    { id: 10751, name: "Família" },
+    { id: 14, name: "Fantasia" },
+    { id: 36, name: "História" },
+    { id: 27, name: "Terror" },
+    { id: 10402, name: "Música" },
+    { id: 9648, name: "Mistério" },
+    { id: 10749, name: "Romance" },
+    { id: 878, name: "Ficção Científica" },
+    { id: 10770, name: "Cinema TV" },
+    { id: 53, name: "Thriller" },
+    { id: 10752, name: "Guerra" },
+    { id: 37, name: "Faroeste" },
+    // Gêneros específicos de Séries (TV) no TMDB:
+    { id: 10759, name: "Ação e Aventura" },
+    { id: 10762, name: "Infantil" },
+    { id: 10763, name: "Notícias" },
+    { id: 10764, name: "Reality" },
+    { id: 10765, name: "Sci-Fi e Fantasia" },
+    { id: 10766, name: "Novela" },
+    { id: 10767, name: "Talk Show" },
+    { id: 10768, name: "Guerra e Política" },
 ]
 
 const genreMap = Object.fromEntries(genres.map((g) => [g.id, g.name]))
 
-export function getGenreString(genreIds: number[]): string {
+export function getGenreString(genreIds: (number | string)[]): string {
     return genreIds
-        .map((id) => genreMap[id])
+        .map((id) => genreMap[Number(id)])
         .filter(Boolean)
         .join(" | ")
 }
