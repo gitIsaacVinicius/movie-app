@@ -17,7 +17,7 @@ import { Movie } from "../types";
 const DetailsScreen = () => {
     const router = useRouter();
 
-    const {title, backdrop_path, date, genere_ids, overview} = useLocalSearchParams<any>()
+    const {title, backdrop_path, date, genere_ids, overview, rating} = useLocalSearchParams<any>()
     const yearReleased = date?.split("-")[0] ?? ""
 
     const backdrop_image = backdrop_path ? `${TMDB_IMAGE_BASE_PATH}${backdrop_path}` : null
@@ -57,7 +57,7 @@ const DetailsScreen = () => {
 
                             <View style={{flexDirection: "row", alignItems: "center"}}>
                                 <AntDesign name="star" size={16} color={"#FF891B"} />
-                                <Text style={{color: "#FF891B", fontWeight: "600", marginLeft: 6}}>9.5</Text>
+                                <Text style={{color: "#FF891B", fontWeight: "600", marginLeft: 6}}>{rating}</Text>
                             </View>
                         </LinearGradient>
                     </SafeAreaView>

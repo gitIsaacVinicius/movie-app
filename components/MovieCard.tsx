@@ -22,7 +22,8 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
                 backdrop_path: movie?.backdrop_path,
                 date: movie?.release_date,
                 genere_ids: movie?.genre_ids,
-                overview: movie?.overview
+                overview: movie?.overview,
+                rating: movie?.vote_average?.toFixed(2)
             }
         })} 
         activeOpacity={.8} style={styles.container}>
