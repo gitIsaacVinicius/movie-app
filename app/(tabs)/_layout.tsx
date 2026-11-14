@@ -1,18 +1,20 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import Colors from "../../constants/colors";
 import { Feather, MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
 
-const RightIcon = ({ icon }: {icon?: any}) => {
+const RightIcon = ({ icon, onPress }: {icon?: any; onPress?: () => void }) => {
     return (
-        <TouchableOpacity activeOpacity={0.8} style={styles.righticonwrapper}>
+        <TouchableOpacity onPress={onPress} activeOpacity={0.8} style={styles.righticonwrapper}>
             {icon ? icon : <Feather name="search" size={24} color={Colors.text} />}
         </TouchableOpacity>
     )
 }
 
 const TabLayout = () => {
+    const router = useRouter();
+
     return (
         <Tabs screenOptions={{
             tabBarInactiveBackgroundColor: Colors.gray,
@@ -39,7 +41,7 @@ const TabLayout = () => {
             headerStyle: {backgroundColor: Colors.background},
             headerTitle: "",
             headerRight: () => {
-              return <RightIcon />
+              return <RightIcon onPress={() => router.push({ pathname: "/search", params: { type: "movie" } })} />
             },
             headerLeft: () => <Text style={styles.title}>Filmes</Text>
           }}/> 
@@ -52,7 +54,7 @@ const TabLayout = () => {
             headerStyle: {backgroundColor: Colors.background},
             headerTitle: "",
             headerRight: () => {
-              return <RightIcon />
+              return <RightIcon onPress={() => router.push({ pathname: "/search", params: { type: "tv" } })} />
             },
             headerLeft: () => <Text style={styles.title}>Séries de TV</Text>
           }}/> 

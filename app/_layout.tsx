@@ -11,6 +11,7 @@ export default function RootLayout() {
             <Stack.Screen name="sign-up" />
             <Stack.Screen name="(tabs)" />
             <Stack.Screen name="details" />
+            <Stack.Screen name="search" />
         </Stack>
     )
 }

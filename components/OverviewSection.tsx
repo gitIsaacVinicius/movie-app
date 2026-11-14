@@ -1,4 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useRouter } from "expo-router"
 import React from "react";
 import Colors from "../constants/colors";
 import { LinearGradient } from "expo-linear-gradient";
@@ -10,6 +11,8 @@ import { default_image } from "../utils/assets";
 import { getGenreString } from "../utils/genres";
 
 const OverviewSection = ({movie}:{movie: Movie | null}) => {
+    const router = useRouter()
+
     const backdrop_image = movie?.backdrop_path ? `${TMDB_IMAGE_BASE_PATH}${movie?.backdrop_path}` : null
 
     const yearRelease = movie?.release_date?.split("-")[0] ?? ""
@@ -32,7 +35,7 @@ const OverviewSection = ({movie}:{movie: Movie | null}) => {
                             </View> 
                         </View>
 
-                        <TouchableOpacity style={styles.searchWrapper} activeOpacity={0.8}>
+                        <TouchableOpacity onPress={() => router.push({ pathname: "/search", params: { type: "multi" } })} style={styles.searchWrapper} activeOpacity={0.8}>
                             <Feather name="search" size={24} color={Colors.text} />
                         </TouchableOpacity>
                     </View>
