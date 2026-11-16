@@ -1,4 +1,4 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Colors from "../../constants/colors";
 import { ms } from "../../screen-dimensions";
@@ -7,6 +7,10 @@ import { movies } from "../../mock-data";
 import MovieCard from "../../components/MovieCard";
 import { useFetch } from "../../hooks/useFetch";
 import { Movie } from "../../types";
+import { api } from "../../utils/api";
+import { router } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import AppButton from "../../components/AppButton";
 
 const ProfileScreen = () => {
     const params = {
@@ -22,6 +26,15 @@ const ProfileScreen = () => {
     
     const yesterdayMovies: Movie[] = yesterdayData?.results
     const dateMovies: Movie[] = dateData?.results
+
+    const handleLogout = () => {
+        Alert.alert("Sair da conta", "Tem certeza que deseja encerrar sua sessão?", [
+            { text: "Cancelar", style: "cancel" },
+            { text: "Sair", style: "destructive", onPress: async () => {delete api.defaults.headers.common["Authorization"];
+                router.replace("/(login)")
+            }}
+        ])
+    }
 
     return (
         <View style={styles.container}>
@@ -54,6 +67,12 @@ const ProfileScreen = () => {
                     horizontal
                     />
                 </View>
+
+                <View style={styles.logoutContainer}>
+                    <AppButton title="Sair da conta" icon={<Ionicons name="log-out-outline" size={20} color={Colors.text} />} 
+                        style={styles.logoutButton} onPress={handleLogout}
+                    />
+                </View>
             </ScrollView>
         </View>
     );
@@ -78,5 +97,14 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     marginTop: 12,
     textAlign: "center",
+  },
+  logoutContainer: {
+    alignItems: "center",
+    marginVertical: 24,
+  },
+  logoutButton: {
+    backgroundColor: Colors.primary,
+    width: "70%",
+    height: 50,
   }
 });
