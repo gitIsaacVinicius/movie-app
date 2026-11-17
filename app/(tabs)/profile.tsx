@@ -1,5 +1,5 @@
-import { Alert, FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { Alert, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
 import Colors from "../../constants/colors";
 import { ms } from "../../screen-dimensions";
 import SectionHeader from "../../components/SectionHeader";
@@ -13,6 +13,21 @@ import { Ionicons } from "@expo/vector-icons";
 import AppButton from "../../components/AppButton";
 
 const ProfileScreen = () => {
+    const [user, setUser] = useState<{ name: string; email: string } | null>(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await api.get("/user/me");
+                setUser(response.data);
+            } catch (error: any) {
+                console.log("Erro ao buscar dados do usuário:", error.response?.data || error.message);
+            }
+        };
+
+        fetchUserData();
+    }, []);
+    
     const params = {
         include_adult: false,
         include_video: false,
@@ -40,10 +55,13 @@ const ProfileScreen = () => {
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{alignItems: "center", justifyContent: "center", marginVertical: 20}}>
-                    <Image source={require("@/assets/images/profile.jpg")} style={styles.profile}/>
+                    <TouchableOpacity onPress={() => router.push("../user-info")} activeOpacity={0.7}>
+                        <Image source={require("@/assets/images/profile.jpg")} style={styles.profile}/>
+                    </TouchableOpacity>
+                    
 
-                    <Text style={styles.name}>Kelvin</Text>
-                    <Text style={{color: Colors.gray, textAlign: "center"}}>Kelvin@email.com</Text>
+                    <Text style={styles.name}>{user?.name || "Carregando..."}</Text>
+                    <Text style={{color: Colors.gray, textAlign: "center"}}>{user?.email || ""}</Text>
                 </View>
 
                 <Text style={{color: Colors.primary, fontWeight: "600", fontSize: 16, marginHorizontal: 12}}>

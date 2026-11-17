@@ -27,6 +27,9 @@ const LoginScreen = () => {
                 password,
             })
 
+            // Salva o token para que as próximas requisições ao backend vão autenticadas
+            api.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`
+
             console.log("Usuário logado:", response.data)
             router.replace("../(tabs)/(home)")
         
