@@ -1,14 +1,14 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router"
 import React from "react";
-import Colors from "../constants/colors";
+import Colors from "@/constants/colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
-import { Movie } from "../types";
-import { TMDB_IMAGE_BASE_PATH } from "../hooks/useFetch";
-import { default_image } from "../utils/assets";
-import { getGenreString } from "../utils/genres";
+import { Movie } from "@/types";
+import { TMDB_IMAGE_BASE_PATH } from "@/hooks/useFetch";
+import { default_image } from "@/utils/assets";
+import { getGenreString } from "@/utils/genres";
 
 const OverviewSection = ({movie}:{movie: Movie | null}) => {
     const router = useRouter()
@@ -27,7 +27,7 @@ const OverviewSection = ({movie}:{movie: Movie | null}) => {
                     <View style={styles.header}>
                         <View style={{flexDirection: "row", alignItems: "center"}}>
                             <Image style={styles.profile} 
-                            source={require("../assets/images/profile.jpg")} />
+                            source={require("@/assets/images/profile.jpg")} />
 
                            <View style={{marginLeft: 8}}>
                             <Text style={styles.greeting}>Hi, Kelvin</Text>

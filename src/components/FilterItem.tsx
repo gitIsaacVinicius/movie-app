@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet, Modal, FlatList } from 'react-native'
 import React, { useState } from 'react'
-import Colors from '../constants/colors' 
+import Colors from '@/constants/colors' 
 import { Entypo } from '@expo/vector-icons'
 
 export interface FilterOption {

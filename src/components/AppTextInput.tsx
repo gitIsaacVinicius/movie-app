@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TextInput, TextInputProps, View } from "react-native";
 import React from "react";
-import Colors from "../constants/colors";
+import Colors from "@/constants/colors";
 
 const AppTextInput: React.FC<TextInputProps> = ({...props}) => {
     return (

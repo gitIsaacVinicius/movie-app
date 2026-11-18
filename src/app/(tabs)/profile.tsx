@@ -1,16 +1,15 @@
-import { Alert, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
-import Colors from "../../constants/colors";
-import { ms } from "../../screen-dimensions";
-import SectionHeader from "../../components/SectionHeader";
-import { movies } from "../../mock-data";
-import MovieCard from "../../components/MovieCard";
-import { useFetch } from "../../hooks/useFetch";
-import { Movie } from "../../types";
-import { api } from "../../utils/api";
-import { router, useFocusEffect } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import AppButton from "../../components/AppButton";
+import { router, useFocusEffect } from "expo-router";
+import { useCallback, useState } from "react";
+import { Alert, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import AppButton from "@/components/AppButton";
+import MovieCard from "@/components/MovieCard";
+import SectionHeader from "@/components/SectionHeader";
+import Colors from "@/constants/colors";
+import { useFetch } from "@/hooks/useFetch";
+import { ms } from "@/screen-dimensions";
+import { Movie } from "@/types";
+import { api } from "@/utils/api";
 
 const ProfileScreen = () => {
     const [user, setUser] = useState<{ name: string; email: string } | null>(null);

@@ -1,18 +1,16 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import React from "react";
-import Colors from "../constants/colors";
-import { useLocalSearchParams, useRouter } from "expo-router";
 import { AntDesign, Feather, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import AppButton from "../components/AppButton";
-import SectionHeader from "../components/SectionHeader";
-import { movies } from "../mock-data";
-import MovieCard from "../components/MovieCard";
-import { getGenreString } from "../utils/genres";
-import { TMDB_IMAGE_BASE_PATH, useFetch } from "../hooks/useFetch";
-import { default_image } from "../utils/assets";
-import { Movie } from "../types";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AppButton from "@/components/AppButton";
+import MovieCard from "@/components/MovieCard";
+import SectionHeader from "@/components/SectionHeader";
+import { Movie } from "@/types";
+import Colors from "@/constants/colors";
+import { TMDB_IMAGE_BASE_PATH, useFetch } from "@/hooks/useFetch";
+import { default_image } from "@/utils/assets";
+import { getGenreString } from "@/utils/genres";
 
 const DetailsScreen = () => {
     const router = useRouter();

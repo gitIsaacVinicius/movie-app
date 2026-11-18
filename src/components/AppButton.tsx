@@ -1,5 +1,5 @@
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native";
-import Colors from "../constants/colors";
+import Colors from "@/constants/colors";
 
 interface AppButtonProps {
     title: string;

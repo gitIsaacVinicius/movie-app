@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { ActivityIndicator, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useFetch } from "../hooks/useFetch";
-import { Movie } from "../types";
+import { useState } from "react";
+import { ActivityIndicator, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useFetch } from "@/hooks/useFetch";
+import { Movie } from "@/types";
 
-import Colors from "../constants/colors";
-import MovieCard from "../components/MovieCard";
+import MovieCard from "@/components/MovieCard";
+import Colors from "@/constants/colors";
 
 
 

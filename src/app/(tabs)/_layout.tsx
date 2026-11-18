@@ -1,8 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
-import { Tabs, useRouter } from "expo-router";
-import Colors from "../../constants/colors";
 import { Feather, MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
+import { Tabs, useRouter } from "expo-router";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import Colors from "@/constants/colors";
 
 const RightIcon = ({ icon, onPress }: {icon?: any; onPress?: () => void }) => {
     return (
@@ -25,7 +24,7 @@ const TabLayout = () => {
             }
             
         }}>
-          <Tabs.Screen name='(home)/index' options={{
+          <Tabs.Screen name='home' options={{
             tabBarIcon: ({color}) => (
                 <Feather name="home" size={20} color={color}/>
             ),

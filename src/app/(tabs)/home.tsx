@@ -1,13 +1,11 @@
-import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
-import Colors from "../../../constants/colors";
-import OverviewSection from "../../../components/OverviewSection";
-import MovieCard from "../../../components/MovieCard";
-import { movies } from "../../../mock-data";
-import ContinueWatchingMovieCard from "../../../components/ContinueWatchingMovieCard";
-import SectionHeader from "../../../components/SectionHeader";
-import { useFetch } from "../../../hooks/useFetch";
-import { Movie } from "../../../types";
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
+import ContinueWatchingMovieCard from "@/components/ContinueWatchingMovieCard";
+import MovieCard from "@/components/MovieCard";
+import OverviewSection from "@/components/OverviewSection";
+import SectionHeader from "@/components/SectionHeader";
+import Colors from "@/constants/colors";
+import { useFetch } from "@/hooks/useFetch";
+import { Movie } from "@/types";
 
 function getRandomMovie(movies: Movie[]): Movie | null {
     if(!movies?.length) return null

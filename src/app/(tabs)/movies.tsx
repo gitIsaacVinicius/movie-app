@@ -1,19 +1,18 @@
-import { FlatList, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
-import Colors from "../../constants/colors";
-import FilterItem from "../../components/FilterItem";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { movies } from "../../mock-data";
-import MovieCard from "../../components/MovieCard";
-import { useFetch } from "../../hooks/useFetch";
-import { Movie } from "../../types";
+import { useState } from "react";
+import { FlatList, RefreshControl, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import FilterItem from "@/components/FilterItem";
+import MovieCard from "@/components/MovieCard";
+import Colors from "@/constants/colors";
+import { useFetch } from "@/hooks/useFetch";
+import { Movie } from "@/types";
 
-const SeriesScreen = () => {
+const MoviesScreen = () => {
     const [page, setPage] = useState(1)
     const [genre, setGenre] = useState<number | undefined>(undefined)
     const [year, setYear] = useState<number | undefined>(undefined)
-    
-    const { data: genresData } = useFetch("/genre/tv/list", { language: "pt-BR" })
+
+    const { data: genresData } = useFetch("/genre/movie/list", { language: "pt-BR" })
     const genres = genresData?.genres || []
 
     const years = [
@@ -31,11 +30,12 @@ const SeriesScreen = () => {
         page,
         sort_by: "popularity.desc",
         with_genres: genre,
-        first_air_date_year: year,
+        primary_release_year: year,
     }
 
-    const {data, loading} = useFetch("/discover/tv", params)
-    const series: Movie[] = data?.results
+    const {data, loading} = useFetch("/discover/movie", params)
+
+    const movies: Movie[] = data?.results
 
     const handleRefresh = () => {
         const randomPage = Math.floor(Math.random() * 10) + 1
@@ -53,19 +53,20 @@ const SeriesScreen = () => {
             <View style={{flexDirection: "row", alignItems: "center", marginVertical: 20}}>
                 <ScrollView horizontal showsVerticalScrollIndicator={false}>
                     <FilterItem title="Categoria" options={genres} selectedValue={genre} onSelect={(id) => { setGenre(id); setPage(1); }} />
-                    <FilterItem title="Ano de lançamento" options={years} selectedValue={year} onSelect={(id) => { setYear(id); setPage(1); }}/>
+                    <FilterItem title="Ano de lançamento" options={years} selectedValue={year} onSelect={(id) => { setYear(id); setPage(1); }} />
                 </ScrollView>
 
-                <TouchableOpacity activeOpacity={0.8} style={{padding: 10}} onPress={clearFilters}>
+                <TouchableOpacity activeOpacity={0.8} style={{padding: 10}} onPress={clearFilters} >
                     <MaterialCommunityIcons name="filter-outline" size={24} color={Colors.text}/>
                 </TouchableOpacity>
             </View>
 
-            <FlatList 
-                data={series}
-                renderItem={({item}) => 
+            <View style={{flex: 1}}>
+                <FlatList 
+                data={movies}
+                renderItem={({item}) => (
                     <MovieCard movie={item} />
-                }
+                )}
                 numColumns={3}
                 refreshControl={
                     <RefreshControl 
@@ -76,15 +77,17 @@ const SeriesScreen = () => {
                     />
                 }
             />
+            </View>
         </View>
     );
 }
 
-export default SeriesScreen;
+export default MoviesScreen
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.background,
     },
+    
 });

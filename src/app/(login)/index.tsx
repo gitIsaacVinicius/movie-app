@@ -1,11 +1,11 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Colors from "../../constants/colors";
-import AppTextInput from "../../components/AppTextInput";
-import AppButton from "../../components/AppButton";
 import { useRouter } from "expo-router";
-import { api } from "../../utils/api";
+import { useState } from "react";
+import { Alert, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AppButton from "@/components/AppButton";
+import AppTextInput from "@/components/AppTextInput";
+import Colors from "@/constants/colors";
+import { api } from "@/utils/api";
 
 const LoginScreen = () => {
     const router = useRouter();
@@ -31,7 +31,7 @@ const LoginScreen = () => {
             api.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`
 
             console.log("Usuário logado:", response.data)
-            router.replace("../(tabs)/(home)")
+            router.replace("../(tabs)/home")
         
         } catch (error: any) {
             console.log("Erro ao fazer login", error.response?.data || error.message)

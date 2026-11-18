@@ -1,11 +1,11 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Colors from "../constants/colors";
-import AppTextInput from "../components/AppTextInput";
-import AppButton from "../components/AppButton";
 import { useRouter } from "expo-router";
-import { api } from "../utils/api";
+import { useState } from "react";
+import { Alert, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AppButton from "@/components/AppButton";
+import AppTextInput from "@/components/AppTextInput";
+import Colors from "@/constants/colors";
+import { api } from "@/utils/api";
 
 const SignupScreen = () => {
     const router = useRouter();

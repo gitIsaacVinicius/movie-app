@@ -1,12 +1,12 @@
 import {DimensionValue, Image, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
-import { hs, ms, vs } from "../screen-dimensions";
-import Colors from "../constants/colors";
+import { hs, ms, vs } from "@/screen-dimensions";
+import Colors from "@/constants/colors";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { Movie } from "../types";
-import { TMDB_IMAGE_BASE_PATH } from "../hooks/useFetch";
-import { default_image } from "../utils/assets";
-import { getGenreString } from "../utils/genres";
+import { Movie } from "@/types";
+import { TMDB_IMAGE_BASE_PATH } from "@/hooks/useFetch";
+import { default_image } from "@/utils/assets";
+import { getGenreString } from "@/utils/genres";
 
 const ContinueWatchingMovieCard = ({ movie }: { movie: Movie }) => {
     const getRandomPercentage = (): DimensionValue => {

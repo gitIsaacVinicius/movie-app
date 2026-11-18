@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import Colors from "../constants/colors";
-import { api } from "../utils/api";
-import { ms } from "../screen-dimensions";
-import AppTextInput from "../components/AppTextInput";
-import AppButton from "../components/AppButton";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AppButton from "@/components/AppButton";
+import AppTextInput from "@/components/AppTextInput";
+import Colors from "@/constants/colors";
+import { ms } from "@/screen-dimensions";
+import { api } from "@/utils/api";
 
 interface UserResponseDTO {
     name: string;

@@ -1,5 +1,9 @@
 import { Stack } from "expo-router";
 
+export const unstable_settings = {
+    anchor: "(login)/index",
+};
+
 export default function RootLayout() {
     return (
         <Stack
