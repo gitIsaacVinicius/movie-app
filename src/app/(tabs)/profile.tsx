@@ -57,7 +57,7 @@ const ProfileScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{alignItems: "center", justifyContent: "center", marginVertical: 20}}>
                     <TouchableOpacity onPress={() => router.push("../user-info")} activeOpacity={0.7}>
-                        <Image source={require("@/assets/images/profile.jpg")} style={styles.profile}/>
+                        <Image source={require("@/assets/images/user-icon.png")} style={styles.profile}/>
                     </TouchableOpacity>
                     
 
@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     width: ms(150),
     height: ms(150),
     borderRadius: 100,
+    tintColor: "#FFFFFF"
   },
   name: {
     fontSize: ms(22),

@@ -27,7 +27,7 @@ const OverviewSection = ({movie}:{movie: Movie | null}) => {
                     <View style={styles.header}>
                         <View style={{flexDirection: "row", alignItems: "center"}}>
                             <Image style={styles.profile} 
-                            source={require("@/assets/images/profile.jpg")} />
+                            source={require("@/assets/images/user-icon.png")} />
 
                            <View style={{marginLeft: 8}}>
                             <Text style={styles.greeting}>Hi, Kelvin</Text>
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
         height: 45,
         width: 45,
         borderRadius: 50,
+        tintColor: "#FFFFFF"
     },
     greeting: {
         fontWeight: "600",

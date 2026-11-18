@@ -74,7 +74,7 @@ const UserInfoScreen = () => {
             </TouchableOpacity>
 
             <View style={styles.content}>
-                <Image source={require("@/assets/images/profile.jpg")} style={styles.avatar} />
+                <Image source={require("@/assets/images/user-icon.png")} style={styles.avatar} />
 
                 {loading ? (
                     <ActivityIndicator size="large" color={Colors.primary} style={{ marginTop: 20 }} />
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
         height: ms(140),
         borderRadius: 100,
         marginBottom: 24,
+        tintColor: "#FFFFFF",
     },
     infoBox: {
         width: "85%",
