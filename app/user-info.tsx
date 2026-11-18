@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import Colors from "../constants/colors";
 import { api } from "../utils/api";
 import { ms } from "../screen-dimensions";
+import AppTextInput from "../components/AppTextInput";
+import AppButton from "../components/AppButton";
 
 interface UserResponseDTO {
     name: string;
@@ -13,14 +15,18 @@ interface UserResponseDTO {
 }
 
 const UserInfoScreen = () => {
-    const [user, setUser] = useState<UserResponseDTO | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [loading, setLoading] = useState(true)
+    const [saving, setSaving] = useState(true)
+    
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
                 const response = await api.get<UserResponseDTO>("/user/me");
-                setUser(response.data);
+                setName(response.data.name);
+                setEmail(response.data.email);
             } catch (error: any) {
                 console.log("Erro ao buscar dados do usuário:", error.response?.data || error.message);
             } finally {
@@ -30,6 +36,36 @@ const UserInfoScreen = () => {
 
         fetchUserData();
     }, []);
+
+    const handleUpdateUser = async () => {
+        if (!name.trim() || !email.trim()) {
+            Alert.alert("Atenção", "Nome e e-mail não podem ficar vazios.")
+            return
+        }
+
+        try {
+            setSaving(true)
+            const response = await api.put<UserResponseDTO>("user/me", { name, email })
+
+            const newToken = response.data.email
+            if (newToken) {
+                api.defaults.headers.common["Authorization"] = `Bearer ${newToken}`
+            }
+
+            Alert.alert("Sucesso", "Dados atualizados com sucesso!")
+        
+        } catch (error: any) {
+            if (error.response?.status === 409) {
+                Alert.alert("Erro", "Este e-mail já está em uso por outro usuário.")
+            } else {
+                console.log("Erro ao atualizar usuário.", error.response?.data || error.message)
+                Alert.alert("Erro", "Não foi possível atualizar os dados.")
+            }
+        
+        } finally {
+            setSaving(false)
+        }
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -45,10 +81,12 @@ const UserInfoScreen = () => {
                 ) : (
                     <View style={styles.infoBox}>
                         <Text style={styles.label}>Nome</Text>
-                        <Text style={styles.value}>{user?.name || "Não encontrado"}</Text>
+                        <AppTextInput placeholder="Seu nome" placeholderTextColor={Colors.gray} value={name} onChangeText={setName} />
 
                         <Text style={styles.label}>E-mail</Text>
-                        <Text style={styles.value}>{user?.email || "Não encontrado"}</Text>
+                        <AppTextInput placeholder="Seu e-mail" placeholderTextColor={Colors.gray} keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} />
+
+                        <AppButton title={saving ? "Salvando..." : "Atualizar dados"} style={styles.updateButton} onPress={handleUpdateUser} />
                     </View>
                 )}
             </View>
@@ -90,10 +128,10 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         marginTop: 10,
     },
-    value: {
-        color: Colors.text,
-        fontSize: 18,
-        fontWeight: "500",
-        marginTop: 4,
+    updateButton: {
+        backgroundColor: Colors.primary,
+        width: "100%",
+        height: 50,
+        marginTop: 20,
     },
 });

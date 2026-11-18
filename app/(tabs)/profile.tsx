@@ -1,5 +1,5 @@
 import { Alert, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Colors from "../../constants/colors";
 import { ms } from "../../screen-dimensions";
 import SectionHeader from "../../components/SectionHeader";
@@ -8,25 +8,27 @@ import MovieCard from "../../components/MovieCard";
 import { useFetch } from "../../hooks/useFetch";
 import { Movie } from "../../types";
 import { api } from "../../utils/api";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import AppButton from "../../components/AppButton";
 
 const ProfileScreen = () => {
     const [user, setUser] = useState<{ name: string; email: string } | null>(null);
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await api.get("/user/me");
-                setUser(response.data);
-            } catch (error: any) {
-                console.log("Erro ao buscar dados do usuário:", error.response?.data || error.message);
-            }
-        };
+    useFocusEffect(
+        useCallback(() => {
+            const fetchUserData = async () => {
+                try {
+                    const response = await api.get("/user/me");
+                    setUser(response.data);
+                } catch (error: any) {
+                    console.log("Erro ao buscar dados do usuário:", error.response?.data || error.message);
+                }
+            };
 
-        fetchUserData();
-    }, []);
+            fetchUserData();
+        }, [])
+    )
     
     const params = {
         include_adult: false,
