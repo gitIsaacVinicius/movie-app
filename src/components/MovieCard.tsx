@@ -20,7 +20,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
             params: {
                 title: movie?.title || movie?.name,
                 backdrop_path: movie?.backdrop_path,
-                date: movie?.release_date,
+                date: movie?.release_date || movie?.first_air_date,
                 genere_ids: movie?.genre_ids,
                 overview: movie?.overview,
                 rating: movie?.vote_average?.toFixed(2)
