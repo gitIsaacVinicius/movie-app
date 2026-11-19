@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useRouter } from "expo-router"
-import React from "react";
+import { useFocusEffect, useRouter } from "expo-router"
+import React, { useCallback, useState } from "react";
+import { api } from "@/utils/api";
 import Colors from "@/constants/colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,6 +18,23 @@ const OverviewSection = ({movie}:{movie: Movie | null}) => {
 
     const yearRelease = movie?.release_date?.split("-")[0] ?? ""
 
+    const [userName, setUserName] = useState("");
+
+    useFocusEffect(
+        useCallback(() => {
+            const fetchUserData = async () => {
+            try {
+                const response = await api.get("/user/me");
+                setUserName(response.data.name);
+            } catch (error: any) {
+                console.log("Erro ao buscar dados do usuário:", error.response?.data || error.message);
+            }
+            };
+
+            fetchUserData();
+        }, [])
+    );
+
     return (
         <View style={styles.overview}>
             <Image style={styles.overviewImage} source={backdrop_image ? { uri: backdrop_image } : default_image} />
@@ -30,7 +48,7 @@ const OverviewSection = ({movie}:{movie: Movie | null}) => {
                             source={require("@/assets/images/user-icon.png")} />
 
                            <View style={{marginLeft: 8}}>
-                            <Text style={styles.greeting}>Hi, Kelvin</Text>
+                            <Text style={styles.greeting}>{userName ? `Olá, ${userName.split(" ")[0]}` : "Olá!"}</Text>
                             <Text style={{color: Colors.text, fontSize: 16}}>Bem-vindo de volta</Text>
                             </View> 
                         </View>
