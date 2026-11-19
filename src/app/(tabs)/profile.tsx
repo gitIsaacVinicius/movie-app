@@ -37,11 +37,11 @@ const ProfileScreen = () => {
         sort_by: "popularity.desc",
     }
 
-    const {data: yesterdayData} = useFetch("/discover/movie", params)
-    const {data: dateData} = useFetch("/discover/movie", {...params, page: 2})
+    const {data: recommendedMoviesData} = useFetch("/discover/movie", params)
+    const {data: recommendedSeriesData} = useFetch("/discover/tv", params)
     
-    const yesterdayMovies: Movie[] = yesterdayData?.results
-    const dateMovies: Movie[] = dateData?.results
+    const recommendedMovies: Movie[] = recommendedMoviesData?.results
+    const recommendedSeries: Movie[] = recommendedSeriesData?.results
 
     const handleLogout = () => {
         Alert.alert("Sair da conta", "Tem certeza que deseja encerrar sua sessão?", [
@@ -67,8 +67,8 @@ const ProfileScreen = () => {
                 </Text>
 
                 <View style={{marginVertical: 12}}>
-                    <SectionHeader title="Ontem" /> 
-                    <FlatList data={yesterdayMovies || []} renderItem={( {item} ) => (
+                    <SectionHeader title="Filmes recomendados" /> 
+                    <FlatList data={recommendedMovies || []} renderItem={( {item} ) => (
                         <MovieCard movie={item} />
                     )} 
                     horizontal
@@ -76,8 +76,8 @@ const ProfileScreen = () => {
                 </View>
                 
                 <View style={{marginBottom: 12}}>
-                    <SectionHeader title="20 de Outubro de 2026" /> 
-                    <FlatList data={dateMovies || []} renderItem={( {item} ) => (
+                    <SectionHeader title="Séries recomendadas" /> 
+                    <FlatList data={recommendedSeries || []} renderItem={( {item} ) => (
                         <MovieCard movie={item} />
                     )} 
                     horizontal
