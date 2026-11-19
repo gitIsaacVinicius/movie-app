@@ -67,7 +67,7 @@ const TabLayout = () => {
             headerTitle: "",
             headerRight: () => {
               return (
-                <RightIcon icon={<MaterialCommunityIcons name="cog-outline" color={Colors.text} size={24}/>} />
+                <RightIcon icon={<MaterialCommunityIcons name="cog-outline" color={Colors.text} size={24}/>} onPress={() => router.push("../user-info")} />
               )
             },
             headerLeft: () => <Text style={styles.title}>Meu Perfil</Text>

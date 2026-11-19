@@ -56,11 +56,8 @@ const ProfileScreen = () => {
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{alignItems: "center", justifyContent: "center", marginVertical: 20}}>
-                    <TouchableOpacity onPress={() => router.push("../user-info")} activeOpacity={0.7}>
-                        <Image source={require("@/assets/images/user-icon.png")} style={styles.profile}/>
-                    </TouchableOpacity>
+                    <Image source={require("@/assets/images/user-icon.png")} style={styles.profile}/>
                     
-
                     <Text style={styles.name}>{user?.name || "Carregando..."}</Text>
                     <Text style={{color: Colors.gray, textAlign: "center"}}>{user?.email || ""}</Text>
                 </View>

@@ -18,7 +18,7 @@ const UserInfoScreen = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [loading, setLoading] = useState(true)
-    const [saving, setSaving] = useState(true)
+    const [saving, setSaving] = useState(false)
     
 
     useEffect(() => {
@@ -86,7 +86,7 @@ const UserInfoScreen = () => {
                         <Text style={styles.label}>E-mail</Text>
                         <AppTextInput placeholder="Seu e-mail" placeholderTextColor={Colors.gray} keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} />
 
-                        <AppButton title={saving ? "Salvando..." : "Atualizar dados"} style={styles.updateButton} onPress={handleUpdateUser} />
+                        <AppButton title={saving ? "Salvando..." : "Salvar"} style={styles.updateButton} onPress={handleUpdateUser} />
                     </View>
                 )}
             </View>
